@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Мастерская Whitecore — Создавай приложения без кода</title>
+    <meta name="description" content="Научись создавать приложения с помощью AI за 2-4 дня. Без программирования. Резидент Astana Hub.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI-Мастерская Whitecore">
+    <meta property="og:description" content="Создавай приложения без кода за 2-4 дня с помощью AI">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://whitecore.kz">
+
+    <!-- Favicon (замени на свой) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠</text></svg>">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 3vw, 20px);
+            opacity: 0.9;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: #667eea;
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .hero-note {
+            margin-top: 24px;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* Features */
+        .features {
+            padding: 80px 20px;
+            background: #111;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 48px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: #1a1a1a;
+            padding: 32px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #888;
+            font-size: 15px;
+        }
+
+        /* Packages */
+        .packages {
+            padding: 80px 20px;
+            background: #000;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .package-card {
+            background: #111;
+            border-radius: 16px;
+            padding: 32px;
+            border: 2px solid #222;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card.featured {
+            border-color: #667eea;
+        }
+
+        .package-card.featured::before {
+            content: '🔥 Популярный';
+            position: absolute;
+            top: 16px;
+            right: -30px;
+            background: #667eea;
+            color: white;
+            padding: 4px 40px;
+            font-size: 12px;
+            transform: rotate(45deg);
+        }
+
+        .package-name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .package-price {
+            font-size: 36px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 4px;
+        }
+
+        .package-price-old {
+            font-size: 18px;
+            color: #666;
+            text-decoration: line-through;
+            margin-bottom: 16px;
+        }
+
+        .package-features {
+            list-style: none;
+            margin: 24px 0;
+        }
+
+        .package-features li {
+            padding: 8px 0;
+            color: #bbb;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .package-features li::before {
+            content: '✓';
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .package-button {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .package-button:hover {
+            transform: scale(1.02);
+        }
+
+        /* About */
+        .about {
+            padding: 80px 20px;
+            background: #111;
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about p {
+            color: #bbb;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .badge-item {
+            background: #1a1a1a;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 20px;
+            background: #000;
+            border-top: 1px solid #222;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-info {
+            color: #666;
+            font-size: 13px;
+            text-align: right;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-info {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge">🇰🇿 Резидент Astana Hub</div>
+            <h1>Создавай приложения<br>без кода за 2-4 дня</h1>
+            <p>Научись создавать сайты, приложения и чат-боты с помощью AI. Без программирования. С помощью Claude Code от Anthropic.</p>
+            <a href="https://t.me/start_wckz_bot" class="cta-button">Начать бесплатно →</a>
+            <p class="hero-note">Первые 3 урока — бесплатно в Telegram-боте</p>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Что ты получишь</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Быстрый старт</h3>
+                    <p>Первый проект за 2 дня. Без долгого изучения программирования.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI делает за тебя</h3>
+                    <p>Claude Code пишет код, ты управляешь процессом словами.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>Портфолио</h3>
+                    <p>Реальные проекты для резюме или фриланса.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Заработок</h3>
+                    <p>Навык стоит 50-150k ₸ за проект на фрилансе.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages -->
+    <section class="packages">
+        <div class="container">
+            <h2 class="section-title">Выбери свой пакет</h2>
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-name">📦 СТАРТ</div>
+                    <div class="package-price">99 900 ₸</div>
+                    <div class="package-price-old">150 000 ₸</div>
+                    <ul class="package-features">
+                        <li>5 модулей, 21 урок</li>
+                        <li>Создание приложений с AI</li>
+                        <li>Публикация в интернете</li>
+                        <li>Твой первый проект</li>
+                        <li>Доступ 12 месяцев</li>
+                    </ul>
+                    <a href="https://t.me/start_wckz_bot" class="package-button">Выбрать СТАРТ</a>
+                </div>
+                <div class="package-card featured">
+                    <div class="package-name">💎 МАСТЕР</div>
+                    <div class="package-price">250 000 ₸</div>
+                    <div class="package-price-old">370 000 ₸</div>
+                    <ul class="package-features">
+                        <li>Всё из пакета СТАРТ +</li>
+                        <li>11 модулей, 55+ уроков</li>
+                        <li>База данных Supabase</li>
+                        <li>Приём платежей</li>
+                        <li>Автоматизация N8N</li>
+                        <li>Telegram Mini App</li>
+                    </ul>
+                    <a href="https://t.me/start_wckz_bot" class="package-button">Выбрать МАСТЕР</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about">
+        <div class="about-content">
+            <h2 class="section-title">О нас</h2>
+            <p><strong>Whitecore</strong> — команда разработчиков из Казахстана. Мы создали 50+ проектов и теперь делимся опытом.</p>
+            <p>Используем <strong>Claude AI от Anthropic</strong> — одного из лидеров AI-индустрии в мире.</p>
+            <div class="badges">
+                <div class="badge-item">🇰🇿 Резидент Astana Hub</div>
+                <div class="badge-item">🤖 Claude AI Partner</div>
+                <div class="badge-item">📱 50+ проектов</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://t.me/start_wckz_bot">Telegram-бот</a>
+                <a href="mailto:support@whitecore.kz">support@whitecore.kz</a>
+                <a href="/docs/offer.html">Оферта</a>
+                <a href="/docs/privacy.html">Конфиденциальность</a>
+            </div>
+            <div class="footer-info">
+                ИП Мурашова О.С.<br>
+                ИИН: 900104400971<br>
+                г. Актау, Казахстан
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
