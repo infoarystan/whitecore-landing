@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика возврата — Whitecore</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #0D0B1A; --bg-card: #1A1730; --accent: #7C3AED; --accent-light: #9F67FF; --text: #F2F2F2; --text-secondary: #A8A2C0; --text-muted: #6B6585; --border: #2A2545; --success: #4ADE80; --danger: #EF4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+        .doc { max-width: 800px; margin: 0 auto; padding: 60px 24px 80px; }
+        .back { display: inline-flex; align-items: center; gap: 6px; color: var(--accent-light); font-size: 14px; margin-bottom: 40px; text-decoration: none; }
+        .back:hover { text-decoration: underline; }
+        h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+        .doc-meta { font-size: 14px; color: var(--text-muted); margin-bottom: 40px; }
+        h2 { font-size: 22px; font-weight: 700; margin: 40px 0 16px; padding-top: 20px; border-top: 1px solid var(--border); }
+        h3 { font-size: 17px; font-weight: 600; margin: 20px 0 10px; }
+        p { margin-bottom: 12px; color: var(--text-secondary); }
+        ul { margin: 12px 0 12px 24px; color: var(--text-secondary); }
+        li { margin-bottom: 6px; }
+        strong { color: var(--text); }
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 16px 0; }
+        .card.green { border-color: rgba(74, 222, 128, 0.3); }
+        .card.yellow { border-color: rgba(212, 165, 116, 0.3); }
+        .card.red { border-color: rgba(239, 68, 68, 0.3); }
+        .card h3 { margin-top: 0; }
+        .green h3 { color: var(--success); }
+        .yellow h3 { color: #D4A574; }
+        .red h3 { color: var(--danger); }
+        .steps { counter-reset: step; }
+        .step-item { display: flex; gap: 16px; margin: 20px 0; }
+        .step-num { width: 36px; height: 36px; min-width: 36px; background: rgba(124, 58, 237, 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--accent-light); font-size: 15px; }
+        .footer-doc { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-muted); }
+        code { background: var(--bg-card); padding: 12px 16px; display: block; border-radius: 8px; font-size: 14px; color: var(--text-secondary); margin: 12px 0; white-space: pre-line; }
+    </style>
+</head>
+<body>
+    <div class="doc">
+        <a href="/" class="back">← Вернуться на сайт</a>
+
+        <h1>Политика возврата денежных средств</h1>
+        <p class="doc-meta">AI-Мастерская Whitecore · ИП Мурашова О.С.</p>
+
+        <h2>Когда можно вернуть деньги</h2>
+
+        <div class="card green">
+            <h3>Полный возврат (100%)</h3>
+            <p>Вы можете получить полный возврат если:</p>
+            <ul>
+                <li>Прошло <strong>не более 14 дней</strong> с момента оплаты</li>
+                <li>Вы прошли <strong>менее 30%</strong> материалов курса</li>
+                <li>Вы не нарушали условия оферты</li>
+            </ul>
+        </div>
+
+        <div class="card yellow">
+            <h3>Частичный возврат (70%)</h3>
+            <p>Вы можете получить 70% от суммы оплаты если:</p>
+            <ul>
+                <li>Прошло <strong>от 7 до 14 дней</strong> с момента оплаты</li>
+                <li>Вы прошли <strong>менее 30%</strong> материалов курса</li>
+            </ul>
+        </div>
+
+        <div class="card red">
+            <h3>Возврат НЕ предоставляется</h3>
+            <p>Мы не сможем вернуть деньги если:</p>
+            <ul>
+                <li>Прошло <strong>более 14 дней</strong> с момента оплаты</li>
+                <li>Вы прошли <strong>более 30%</strong> материалов курса</li>
+                <li>Вы передали доступ третьим лицам</li>
+                <li>Вы распространяли материалы курса</li>
+            </ul>
+        </div>
+
+        <h2>Аннулирование заказа</h2>
+        <p>Вы можете <strong>аннулировать заказ в течение 24 часов</strong> с момента оплаты — без объяснения причин, с полным возвратом средств.</p>
+        <p>Для аннулирования напишите в Telegram-бот @start_wckz_bot или на email support@whitecore.kz.</p>
+
+        <h2>Как запросить возврат</h2>
+        <div class="steps">
+            <div class="step-item">
+                <div class="step-num">1</div>
+                <div>
+                    <h3>Подайте заявку</h3>
+                    <p>Напишите в Telegram-бот @start_wckz_bot:</p>
+                    <code>Хочу оформить возврат.
+ФИО: [Ваше имя]
+Телефон: [Номер]
+Причина: [Коротко опишите причину]</code>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">2</div>
+                <div>
+                    <h3>Дождитесь подтверждения</h3>
+                    <p>Мы рассмотрим заявку в течение <strong>3 рабочих дней</strong> и свяжемся с вами.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">3</div>
+                <div>
+                    <h3>Получите возврат</h3>
+                    <p>После подтверждения деньги вернутся на ваш счёт в течение <strong>14 рабочих дней</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Способ возврата</h2>
+        <p>Деньги возвращаются тем же способом, которым была произведена оплата:</p>
+        <ul>
+            <li><strong>Банковская карта (Halyk Epay)</strong> → на ту же карту</li>
+            <li><strong>Kaspi</strong> → на тот же номер телефона</li>
+            <li><strong>Рассрочка Halyk Bank</strong> → по согласованию с банком</li>
+        </ul>
+
+        <h2>Контакты</h2>
+        <ul>
+            <li><strong>Telegram-бот:</strong> @start_wckz_bot</li>
+            <li><strong>Телефон:</strong> +7 (706) 655-49-05</li>
+            <li><strong>Email:</strong> support@whitecore.kz</li>
+        </ul>
+
+        <div class="footer-doc">
+            <p>Данная политика соответствует Закону РК «О защите прав потребителей», статье 28 (дистанционная торговля).</p>
+            <p><strong>ИП Мурашова О.С.</strong> · г. Актау, Республика Казахстан</p>
+        </div>
+    </div>
+</body>
+</html>
