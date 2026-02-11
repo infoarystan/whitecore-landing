@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loyalty Hub — AI-система для кафе и ресторанов | Whitecore</title>
+    <meta name="description" content="Готовая система лояльности, доставки и управления для кафе — с AI-аналитикой и Telegram-ботом. От Whitecore.">
+    <link rel="canonical" href="https://whitecore.kz/loyalty">
+
+    <meta property="og:title" content="Loyalty Hub — AI-система для кафе и ресторанов">
+    <meta property="og:description" content="Лояльность, доставка, управление — всё в одном Telegram-боте с AI-аналитикой.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://whitecore.kz/loyalty">
+    <meta property="og:locale" content="ru_KZ">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0D0B1A;
+            --bg-card: #1A1730;
+            --bg-card-hover: #221F3A;
+            --accent: #7C3AED;
+            --accent-light: #9F67FF;
+            --accent-glow: rgba(124, 58, 237, 0.3);
+            --cta: #D4A574;
+            --cta-hover: #E5B885;
+            --text: #F2F2F2;
+            --text-secondary: #A8A2C0;
+            --text-muted: #6B6585;
+            --border: #2A2545;
+            --success: #4ADE80;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        .header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 16px 24px;
+            transition: background 0.3s, backdrop-filter 0.3s;
+        }
+        .header.scrolled {
+            background: rgba(13, 11, 26, 0.9);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 1px 0 var(--border);
+        }
+        .header-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; }
+        .logo img { height: 36px; width: 36px; border-radius: 8px; }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a.active { color: var(--cta); }
+
+        .hero {
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-content { max-width: 700px; position: relative; z-index: 1; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(212, 165, 116, 0.15); border: 1px solid rgba(212, 165, 116, 0.3);
+            padding: 8px 20px; border-radius: 100px;
+            font-size: 14px; color: var(--cta); margin-bottom: 32px;
+        }
+        .hero h1 {
+            font-size: clamp(36px, 7vw, 56px); font-weight: 800;
+            line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.02em;
+        }
+        .gradient-gold {
+            background: linear-gradient(135deg, var(--cta), #F5D4A8);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-subtitle {
+            font-size: clamp(17px, 2.5vw, 20px); color: var(--text-secondary);
+            max-width: 540px; margin: 0 auto 40px;
+        }
+
+        .section { padding: 100px 24px; }
+        .section-label { text-align: center; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--cta); margin-bottom: 16px; }
+        .section-title { text-align: center; font-size: clamp(28px, 5vw, 42px); font-weight: 800; margin-bottom: 20px; }
+        .section-subtitle { text-align: center; font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto 60px; }
+
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .feature-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+            padding: 32px; transition: border-color 0.3s, transform 0.3s;
+        }
+        .feature-card:hover { border-color: var(--cta); transform: translateY(-2px); }
+        .feature-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            background: rgba(212, 165, 116, 0.15);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px; font-size: 24px;
+        }
+        .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .feature-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
+
+        .cta-section { text-align: center; padding: 80px 24px; border-top: 1px solid var(--border); }
+        .cta-section h2 { font-size: clamp(24px, 4vw, 36px); font-weight: 800; margin-bottom: 16px; }
+        .cta-section p { font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; }
+        .cta-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 18px 40px; background: var(--cta); color: #1a1200;
+            border-radius: 12px; font-size: 18px; font-weight: 700;
+            transition: all 0.3s; box-shadow: 0 0 30px rgba(212, 165, 116, 0.2);
+        }
+        .cta-btn:hover { background: var(--cta-hover); transform: translateY(-2px); }
+
+        .price-tag {
+            display: inline-block; background: var(--bg-card); border: 1px solid var(--border);
+            padding: 12px 28px; border-radius: 12px; margin-bottom: 16px;
+        }
+        .price-tag .amount { font-size: 32px; font-weight: 800; }
+        .price-tag .label { font-size: 14px; color: var(--text-secondary); }
+
+        .footer {
+            border-top: 1px solid var(--border); padding: 40px 24px;
+        }
+        .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-muted); font-size: 14px; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text); }
+        .footer-info { color: var(--text-muted); font-size: 13px; text-align: right; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .features-grid { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; text-align: center; }
+            .footer-links { justify-content: center; }
+            .footer-info { text-align: center; }
+        }
+    </style>
+
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=106706334','ym');
+        ym(106706334,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
+    </script>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="/" class="logo">
+                <img src="/logo-whitecore.png" alt="Whitecore">
+                Whitecore<sup style="font-size:10px;margin-left:2px;opacity:0.6">&copy;</sup>
+            </a>
+            <nav class="nav-links">
+                <a href="/course">Обучение</a>
+                <a href="/loyalty" class="active">Loyalty Hub</a>
+                <a href="/services">Услуги</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge reveal">Готовый продукт</div>
+            <h1 class="reveal"><span class="gradient-gold">Loyalty Hub</span></h1>
+            <p class="hero-subtitle reveal">Система лояльности, доставки и управления для кафе и ресторанов. С AI-аналитикой и Telegram-ботом для ваших клиентов.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <p class="section-label reveal">Возможности</p>
+            <h2 class="section-title reveal">Всё, что нужно вашему кафе</h2>
+            <p class="section-subtitle reveal">Один продукт вместо 5 отдельных сервисов</p>
+
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Программа лояльности</h3>
+                    <p>Бонусы, кэшбек, накопительные карты — всё в Telegram-боте. Клиенты копят баллы и возвращаются.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">🛵</div>
+                    <h3>Доставка</h3>
+                    <p>Онлайн-меню, корзина, оплата и отслеживание заказа — без комиссий агрегаторов.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">📊</div>
+                    <h3>AI-аналитика</h3>
+                    <p>Автоматические отчёты: выручка, популярные блюда, пиковые часы. AI подсказывает что улучшить.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">📱</div>
+                    <h3>Telegram-бот для клиентов</h3>
+                    <p>Клиенты заказывают, проверяют бонусы и бронируют столик — прямо в Telegram.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Push-рассылки</h3>
+                    <p>Акции, напоминания, персональные предложения — напрямую клиентам, без SMS-затрат.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Админ-панель</h3>
+                    <p>Управление меню, заказами, клиентами и финансами — с любого устройства.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container reveal">
+            <div class="price-tag">
+                <div class="amount">от 250 000 ₸</div>
+                <div class="label">Внедрение + настройка + обучение персонала</div>
+            </div>
+            <h2>Готовы автоматизировать своё кафе?</h2>
+            <p>Напишите — обсудим ваши задачи и покажем демо за 15 минут.</p>
+            <a href="https://wa.me/77066554905?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20Loyalty%20Hub%20%D0%B4%D0%BB%D1%8F%20%D0%BA%D0%B0%D1%84%D0%B5." class="cta-btn" target="_blank">Написать в WhatsApp →</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-links">
+                <a href="mailto:support@whitecore.kz">support@whitecore.kz</a>
+                <a href="/docs/offer.html">Оферта</a>
+                <a href="/docs/privacy.html">Конфиденциальность</a>
+            </div>
+            <div class="footer-info">
+                ИП Мурашова О.С. · г. Актау, Казахстан<br>&copy; 2026 Whitecore. Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); });
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

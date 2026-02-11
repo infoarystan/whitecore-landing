@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Мастерская Whitecore — Построй приложение с AI за 2 дня</title>
+    <meta name="description" content="Первый в Казахстане курс, где AI пишет код за тебя. От идеи до рабочего приложения за 2-7 дней. Без программирования.">
+    <meta name="keywords" content="AI курс Казахстан, создать приложение без кода, vibe coding, Claude AI, no-code Казахстан, курс программирования AI, Telegram Mini App, whitecore">
+    <link rel="canonical" href="https://whitecore.kz/course">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI-Мастерская Whitecore — Построй приложение с AI">
+    <meta property="og:description" content="AI пишет код за тебя. От идеи до рабочего приложения за 2-7 дней. Без программирования.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://whitecore.kz">
+    <meta property="og:locale" content="ru_KZ">
+    <meta property="og:site_name" content="AI-Мастерская Whitecore">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI-Мастерская Whitecore — Построй приложение с AI">
+    <meta name="twitter:description" content="Первый в Казахстане курс, где AI создаёт приложения. От идеи до рабочего URL за 2-7 дней.">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==================== VARIABLES ==================== */
+        :root {
+            --bg: #0D0B1A;
+            --bg-card: #1A1730;
+            --bg-card-hover: #221F3A;
+            --accent: #7C3AED;
+            --accent-light: #9F67FF;
+            --accent-glow: rgba(124, 58, 237, 0.3);
+            --cta: #D4A574;
+            --cta-hover: #E5B885;
+            --text: #F2F2F2;
+            --text-secondary: #A8A2C0;
+            --text-muted: #6B6585;
+            --border: #2A2545;
+            --success: #4ADE80;
+            --danger: #EF4444;
+        }
+
+        /* ==================== RESET ==================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ==================== HEADER ==================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 24px;
+            transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s;
+        }
+
+        .header.scrolled {
+            background: rgba(13, 11, 26, 0.9);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 1px 0 var(--border);
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .logo img {
+            height: 36px;
+            width: 36px;
+            border-radius: 8px;
+        }
+
+        .header-cta {
+            padding: 10px 24px;
+            background: var(--accent);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .header-cta:hover {
+            background: var(--accent-light);
+            transform: translateY(-1px);
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(124, 58, 237, 0.15);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 14px;
+            color: var(--accent-light);
+            margin-bottom: 32px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 7vw, 64px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--accent-light), var(--cta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(20px, 3.5vw, 28px);
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 520px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 40px;
+            background: var(--cta);
+            color: #1a1200;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 0 30px rgba(212, 165, 116, 0.2);
+        }
+
+        .hero-cta:hover {
+            background: var(--cta-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(212, 165, 116, 0.3);
+        }
+
+        .hero-note {
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== SECTION COMMON ==================== */
+        .section {
+            padding: 100px 24px;
+        }
+
+        .section-label {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-light);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+
+        /* ==================== PAIN POINTS ==================== */
+        .pains-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pain-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .pain-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .pain-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(159, 103, 255, 0.1));
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pain-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .pain-card p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ==================== SOLUTION / COMPARISON ==================== */
+        .solution {
+            background: linear-gradient(180deg, var(--bg) 0%, #130F25 100%);
+        }
+
+        .comparison-table {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .comparison-row.header-row {
+            background: var(--bg-card);
+        }
+
+        .comparison-cell {
+            padding: 18px 24px;
+            font-size: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-row:last-child .comparison-cell {
+            border-bottom: none;
+        }
+
+        .comparison-cell.other {
+            color: var(--text-muted);
+            border-right: 1px solid var(--border);
+        }
+
+        .comparison-cell.other .strike {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        .comparison-cell.us {
+            color: var(--success);
+            font-weight: 500;
+        }
+
+        .comparison-cell.label {
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .comparison-cell.label.other { color: var(--text-muted); }
+        .comparison-cell.label.us { color: var(--accent-light); }
+
+        /* ==================== PORTFOLIO ==================== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto 48px;
+        }
+
+        .portfolio-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .portfolio-preview {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-preview.p1 {
+            background: linear-gradient(135deg, #1a1035, #2d1b69);
+        }
+
+        .portfolio-preview.p2 {
+            background: linear-gradient(135deg, #0f1a2e, #1b3a5c);
+        }
+
+        .portfolio-preview.p3 {
+            background: linear-gradient(135deg, #1a2e1a, #2d5c2d);
+        }
+
+        .portfolio-preview.p4 {
+            background: linear-gradient(135deg, #2e1a1a, #5c2d2d);
+        }
+
+        .portfolio-preview-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 8px 16px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .portfolio-info {
+            padding: 20px;
+        }
+
+        .portfolio-info h3 {
+            font-size: 17px;
+            margin-bottom: 6px;
+        }
+
+        .portfolio-info p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .proof-banner {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 32px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(212, 165, 116, 0.05));
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 16px;
+        }
+
+        .proof-banner p {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .proof-banner span {
+            color: var(--accent-light);
+        }
+
+        /* ==================== HOW IT WORKS ==================== */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent);
+            background: rgba(124, 58, 237, 0.1);
+            border: 2px solid rgba(124, 58, 237, 0.3);
+            border-radius: 50%;
+        }
+
+        .step h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 32px;
+            right: -16px;
+            width: 32px;
+            height: 2px;
+            background: var(--border);
+        }
+
+        /* ==================== COURSE PROGRAM ==================== */
+        .program {
+            background: linear-gradient(180deg, #130F25 0%, var(--bg) 100%);
+        }
+
+        .program-modules {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .program-tier-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .program-tier-label.free {
+            background: rgba(74, 222, 128, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+        }
+
+        .program-tier-label.start {
+            background: rgba(124, 58, 237, 0.1);
+            color: var(--accent-light);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+        }
+
+        .program-tier-label.master {
+            background: rgba(212, 165, 116, 0.1);
+            color: var(--cta);
+            border: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        .module-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: border-color 0.3s;
+        }
+
+        .module-item:hover {
+            border-color: var(--accent);
+        }
+
+        .module-num {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(124, 58, 237, 0.15);
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--accent-light);
+        }
+
+        .module-content h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .module-content p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .program-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 32px 0;
+        }
+
+        /* ==================== PROOF ==================== */
+        .proof-section {
+            text-align: center;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .trust-badge svg, .trust-badge img {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+
+        .logo-pill {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 5px 14px;
+            border-radius: 8px;
+        }
+
+        .logo-pill img {
+            display: block;
+        }
+
+        .portfolio-preview svg {
+            width: 48px;
+            height: 48px;
+            padding: 12px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.25), rgba(159, 103, 255, 0.1));
+            border: 1px solid rgba(124, 58, 237, 0.35);
+            border-radius: 50%;
+            box-sizing: content-box;
+        }
+
+        /* ==================== INSTRUCTOR ==================== */
+        .instructor {
+            background: linear-gradient(180deg, var(--bg) 0%, #130F25 100%);
+        }
+
+        .instructor-card {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .instructor-photo {
+            width: 200px;
+            height: 200px;
+            min-width: 200px;
+            border-radius: 20px;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .instructor-info h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .instructor-info p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .instructor-stats {
+            display: flex;
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .instructor-stat {
+            text-align: center;
+        }
+
+        .instructor-stat .num {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-light);
+        }
+
+        .instructor-stat .label {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== PRICING ==================== */
+        .pricing {
+            background: linear-gradient(180deg, #130F25 0%, var(--bg) 100%);
+        }
+
+        .seats-counter {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .seats-counter .counter-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 12px 28px;
+            border-radius: 100px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .seats-counter .counter-box .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--danger);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px 28px;
+            position: relative;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--accent);
+            box-shadow: 0 0 40px var(--accent-glow);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Популярный';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 4px 20px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .pricing-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .pricing-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .pricing-price {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .pricing-price .currency {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .pricing-old-price {
+            font-size: 16px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-bottom: 6px;
+        }
+
+        .pricing-installment {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .pricing-features {
+            margin-bottom: 28px;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .pricing-features li .check {
+            color: var(--success);
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .pricing-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .pricing-btn.primary {
+            background: var(--cta);
+            color: #1a1200;
+        }
+
+        .pricing-btn.primary:hover {
+            background: var(--cta-hover);
+            transform: translateY(-1px);
+        }
+
+        .pricing-btn.accent {
+            background: var(--accent);
+            color: white;
+        }
+
+        .pricing-btn.accent:hover {
+            background: var(--accent-light);
+            transform: translateY(-1px);
+        }
+
+        .pricing-btn.outline {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .pricing-btn.outline:hover {
+            border-color: var(--accent);
+            color: var(--accent-light);
+        }
+
+        .pricing-guarantee {
+            text-align: center;
+            margin-top: 32px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .pricing-payments {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .pricing-payments span {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .pricing-payments img {
+            height: 28px;
+            border-radius: 4px;
+        }
+
+        /* ==================== FOR WHOM ==================== */
+        .personas-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .persona-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: border-color 0.3s;
+        }
+
+        .persona-card:hover {
+            border-color: var(--accent);
+        }
+
+        .persona-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .persona-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(159, 103, 255, 0.1));
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .persona-avatar svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .persona-name {
+            font-weight: 700;
+            font-size: 17px;
+        }
+
+        .persona-role {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .persona-pain {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .persona-solution {
+            font-size: 14px;
+            color: var(--success);
+            font-weight: 500;
+        }
+
+        /* ==================== FAQ ==================== */
+        .faq {
+            background: linear-gradient(180deg, var(--bg) 0%, #130F25 100%);
+        }
+
+        .faq-list {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 24px 0;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 17px;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: inherit;
+            gap: 16px;
+        }
+
+        .faq-question:hover {
+            color: var(--accent-light);
+        }
+
+        .faq-icon {
+            font-size: 24px;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            color: var(--accent);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-inner {
+            padding-bottom: 24px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ==================== FINAL CTA ==================== */
+        .final-cta {
+            text-align: center;
+            padding: 100px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .final-cta p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .final-cta .hero-cta {
+            position: relative;
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            padding: 40px 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        .footer-info {
+            color: var(--text-muted);
+            font-size: 13px;
+            text-align: right;
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .section { padding: 70px 20px; }
+
+            .pains-grid,
+            .portfolio-grid,
+            .personas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .step:not(:last-child)::after {
+                display: none;
+            }
+
+            .comparison-cell {
+                padding: 14px 16px;
+                font-size: 14px;
+            }
+
+            .instructor-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .instructor-photo {
+                width: 160px;
+                height: 160px;
+                min-width: 160px;
+            }
+
+            .instructor-stats {
+                justify-content: center;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+
+            .footer-info {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero { padding: 100px 16px 60px; }
+            .hero-cta { padding: 16px 32px; font-size: 16px; }
+            .pricing-card { padding: 28px 20px; }
+        }
+    </style>
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "AI-Мастерская Whitecore",
+      "description": "Первый в Казахстане курс, где AI пишет код за тебя. От идеи до рабочего приложения за 2-7 дней без программирования.",
+      "provider": {
+        "@type": "Organization",
+        "name": "Whitecore",
+        "url": "https://whitecore.kz"
+      },
+      "offers": {
+          "@type": "Offer",
+          "name": "AI-Мастерская Whitecore",
+          "price": "19900",
+          "priceCurrency": "KZT",
+          "availability": "https://schema.org/LimitedAvailability"
+      },
+      "inLanguage": "ru",
+      "courseMode": "online",
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "online",
+        "duration": "P7D"
+      }
+    }
+    </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106706334', 'ym');
+        ym(106706334, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/106706334" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="/" class="logo">
+                <img src="/logo-whitecore.png" alt="Whitecore">
+                Whitecore<sup style="font-size:10px;margin-left:2px;opacity:0.6">&copy;</sup>
+            </a>
+            <a href="https://t.me/start_wckz_bot" class="header-cta">Начать бесплатно</a>
+        </div>
+    </header>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Первый AI-курс в Казахстане</div>
+            <h1>Построй своё приложение <span class="gradient-text">за 2 дня</span></h1>
+            <p class="hero-subtitle">AI напишет код за тебя</p>
+            <p class="hero-description">Без программирования. От идеи до рабочего продукта. Первый в Казахстане курс, где AI создаёт приложения вместо тебя.</p>
+            <a href="https://t.me/start_wckz_bot" class="hero-cta">Начать бесплатно →</a>
+            <p class="hero-note">Первый модуль из 5 уроков — бесплатно</p>
+        </div>
+    </section>
+
+    <!-- ==================== PAIN POINTS ==================== -->
+    <section class="section" id="problems">
+        <div class="container">
+            <p class="section-label reveal">Знакомо?</p>
+            <h2 class="section-title reveal">У тебя есть идея. Но нет способа её реализовать</h2>
+            <p class="section-subtitle reveal">Ты не одинок. Вот что слышим чаще всего:</p>
+            <div class="pains-grid">
+                <div class="pain-card reveal">
+                    <div class="pain-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#9F67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8h20"/><path d="M6 12h3"/><path d="M6 15h5"/><circle cx="17" cy="13.5" r="2.5"/><path d="M15 16l-1 1"/></svg></div>
+                    <p>Есть идея приложения, но разработчик просит <strong>500K+ тенге</strong>?</p>
+                </div>
+                <div class="pain-card reveal">
+                    <div class="pain-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#9F67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14.5" y1="4" x2="9.5" y2="20"/></svg></div>
+                    <p>Пробовал учить код — <strong>бросил через неделю</strong>?</p>
+                </div>
+                <div class="pain-card reveal">
+                    <div class="pain-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#9F67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><path d="M9 10h0"/><path d="M12 10h0"/><path d="M15 10h0"/></svg></div>
+                    <p>Клиенты просят бота или сайт — <strong>приходится отказывать</strong>?</p>
+                </div>
+                <div class="pain-card reveal">
+                    <div class="pain-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#9F67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                    <p>Тратишь часы на рутину, которую <strong>можно автоматизировать</strong>?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SOLUTION ==================== -->
+    <section class="section solution" id="solution">
+        <div class="container">
+            <p class="section-label reveal">Решение</p>
+            <h2 class="section-title reveal">Все учат промпты.<br>Мы учим <span class="gradient-text">создавать продукты</span></h2>
+            <p class="section-subtitle reveal">Не теория. Не ChatGPT-промпты. А реальные приложения с живыми URL</p>
+            <div class="comparison-table reveal">
+                <div class="comparison-row header-row">
+                    <div class="comparison-cell label other">Другие курсы</div>
+                    <div class="comparison-cell label us">Whitecore</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell other"><span class="strike">Учат 3-12 месяцев</span></div>
+                    <div class="comparison-cell us">✓ Результат за 2-7 дней</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell other"><span class="strike">Учат теорию и промпты</span></div>
+                    <div class="comparison-cell us">✓ Строишь реальные приложения</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell other"><span class="strike">$1,000+ за курс</span></div>
+                    <div class="comparison-cell us">✓ Доступная цена в тенге</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell other"><span class="strike">Абстрактные примеры</span></div>
+                    <div class="comparison-cell us">✓ Тенге, местный бизнес, рассрочка</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell other"><span class="strike">Скачай 10 программ</span></div>
+                    <div class="comparison-cell us">✓ Всё через Telegram</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PORTFOLIO ==================== -->
+    <section class="section" id="portfolio">
+        <div class="container">
+            <p class="section-label reveal">Результаты</p>
+            <h2 class="section-title reveal">Что ты сможешь создать</h2>
+            <p class="section-subtitle reveal">Реальные проекты, которые можно построить на курсе</p>
+            <div class="portfolio-grid">
+                <div class="portfolio-card reveal">
+                    <div class="portfolio-preview p1">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#9F67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><polygon points="10 8 10 12 14 10" fill="#9F67FF" stroke="none"/></svg>
+                        <div class="portfolio-preview-label">Реальный проект</div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Образовательная платформа</h3>
+                        <p>Онлайн-курсы с уроками, прогрессом и оплатой</p>
+                    </div>
+                </div>
+                <div class="portfolio-card reveal">
+                    <div class="portfolio-preview p2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#9F67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h0"/><path d="M9 6h6"/><path d="M9 9h6"/><path d="M9 12h4"/></svg>
+                        <div class="portfolio-preview-label">Реальный проект</div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Система лояльности для кафе</h3>
+                        <p>Мини-апп с доставкой, бонусами и эквайрингом</p>
+                    </div>
+                </div>
+                <div class="portfolio-card reveal">
+                    <div class="portfolio-preview p3">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#9F67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5A8.48 8.48 0 0121 11v.5z"/><path d="M9 10l2 2 4-4"/></svg>
+                        <div class="portfolio-preview-label">Проект из курса</div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Telegram-бот для бизнеса</h3>
+                        <p>Автоматизация записи, FAQ и уведомлений</p>
+                    </div>
+                </div>
+                <div class="portfolio-card reveal">
+                    <div class="portfolio-preview p4">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#9F67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/><path d="M14 15h4"/><path d="M14 12h4"/></svg>
+                        <div class="portfolio-preview-label">Проект из курса</div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Landing page для стартапа</h3>
+                        <p>Продающая страница с аналитикой и формами</p>
+                    </div>
+                </div>
+            </div>
+            <div class="proof-banner reveal">
+                <p><svg style="display:inline-block;vertical-align:middle;width:22px;height:22px;margin-right:8px" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 015 12 3 3 0 01-1 2H8a3 3 0 01-1-2 7 7 0 015-12z"/></svg><span>Эта платформа создана теми же инструментами</span>, которые вы изучите на курсе. Без единой строчки кода.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== HOW IT WORKS ==================== -->
+    <section class="section" id="how">
+        <div class="container">
+            <p class="section-label reveal">Как это работает</p>
+            <h2 class="section-title reveal">3 шага до твоего приложения</h2>
+            <p class="section-subtitle reveal">Никакого кода. Ты говоришь — AI делает</p>
+            <div class="steps">
+                <div class="step reveal">
+                    <div class="step-number">1</div>
+                    <h3>Опиши идею</h3>
+                    <p>Расскажи Claude что хочешь создать — своими словами, на любом языке</p>
+                </div>
+                <div class="step reveal">
+                    <div class="step-number">2</div>
+                    <h3>AI пишет код</h3>
+                    <p>Claude Code создаёт приложение за минуты, а не за месяцы</p>
+                </div>
+                <div class="step reveal">
+                    <div class="step-number">3</div>
+                    <h3>Публикуй</h3>
+                    <p>Твой проект доступен по ссылке для всего мира</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== COURSE PROGRAM ==================== -->
+    <section class="section program" id="program">
+        <div class="container">
+            <p class="section-label reveal">Программа</p>
+            <h2 class="section-title reveal">Чему ты научишься</h2>
+            <p class="section-subtitle reveal">Каждый модуль — конкретный результат. Не теория ради теории.</p>
+
+            <div class="program-modules">
+                <!-- FREE -->
+                <div class="program-tier-label free reveal">✦ Бесплатно</div>
+
+                <div class="module-item reveal">
+                    <div class="module-num">1</div>
+                    <div class="module-content">
+                        <h3>Твой первый проект с AI</h3>
+                        <p>Установка, настройка и создание рабочего приложения без единой строчки кода</p>
+                    </div>
+                </div>
+
+                <div class="program-divider"></div>
+
+                <!-- START -->
+                <div class="program-tier-label start reveal">✦ Пакет START</div>
+
+                <div class="module-item reveal">
+                    <div class="module-num">2</div>
+                    <div class="module-content">
+                        <h3>GitHub и основы</h3>
+                        <p>Проект в облаке с автоматическим сохранением и историей версий</p>
+                    </div>
+                </div>
+                <div class="module-item reveal">
+                    <div class="module-num">3</div>
+                    <div class="module-content">
+                        <h3>Документация проекта</h3>
+                        <p>AI понимает контекст и работает точнее — меньше ошибок, больше результата</p>
+                    </div>
+                </div>
+                <div class="module-item reveal">
+                    <div class="module-num">4</div>
+                    <div class="module-content">
+                        <h3>Управление проектом</h3>
+                        <p>Строишь любой проект пошагово — файлы, структура, навигация</p>
+                    </div>
+                </div>
+                <div class="module-item reveal">
+                    <div class="module-num">5</div>
+                    <div class="module-content">
+                        <h3>Продвинутые техники</h3>
+                        <p>Решаешь проблемы самостоятельно и управляешь сложными проектами</p>
+                    </div>
+                </div>
+                <div class="module-item reveal">
+                    <div class="module-num">⭐</div>
+                    <div class="module-content">
+                        <h3>Бонус: Публикация в интернете</h3>
+                        <p>Твой проект доступен по ссылке для всего мира — бесплатный хостинг навсегда</p>
+                    </div>
+                </div>
+
+                <div class="program-divider"></div>
+
+                <!-- MASTER -->
+                <div class="program-tier-label master reveal">✦ Пакет MASTER</div>
+
+                <div class="module-item reveal">
+                    <div class="module-num">6</div>
+                    <div class="module-content">
+                        <h3>База данных</h3>
+                        <p>Приложение сохраняет и обрабатывает данные пользователей</p>
+                    </div>
+                </div>
+                <div class="module-item reveal">
+                    <div class="module-num">7</div>
+                    <div class="module-content">
+                        <h3>Авторизация пользователей</h3>
+                        <p>Регистрация, вход и персональный кабинет для каждого клиента</p>
+                    </div>
+                </div>
+                <div class="module-item reveal">
+                    <div class="module-num">8</div>
+                    <div class="module-content">
+                        <h3>Приём платежей</h3>
+                        <p>Подключаешь банковские карты и рассрочку — начинаешь зарабатывать</p>
+                    </div>
+                </div>
+                <div class="module-item reveal">
+                    <div class="module-num">9</div>
+                    <div class="module-content">
+                        <h3>Автоматизация</h3>
+                        <p>Уведомления, email-рассылки, интеграции — всё работает без тебя</p>
+                    </div>
+                </div>
+                <div class="module-item reveal">
+                    <div class="module-num">10</div>
+                    <div class="module-content">
+                        <h3>Telegram Mini App</h3>
+                        <p>Полноценное приложение прямо внутри Telegram — для 14 миллионов пользователей KZ</p>
+                    </div>
+                </div>
+                <div class="module-item reveal">
+                    <div class="module-num">11</div>
+                    <div class="module-content">
+                        <h3>Продвинутая автоматизация</h3>
+                        <p>Сложные бизнес-процессы, API-интеграции, масштабирование проекта</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROOF ==================== -->
+    <section class="section proof-section" id="proof">
+        <div class="container">
+            <p class="section-label reveal">Доказательство</p>
+            <h2 class="section-title reveal">Не просто слова — факты</h2>
+            <p class="section-subtitle reveal">Мы не учим теории. Мы сами строим продукты этими инструментами каждый день.</p>
+            <div class="trust-badges reveal">
+                <div class="trust-badge">
+                    Первый AI-курс в Казахстане
+                </div>
+                <div class="trust-badge">
+                    <span class="logo-pill"><img src="./claude-logo.svg" alt="Claude AI" style="height:18px;width:auto"></span>
+                    Работает на Claude AI
+                </div>
+                <div class="trust-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#9F67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 8h2m2 0h2m2 0h2"/><path d="M7 11h10"/></svg>
+                    50+ реализованных проектов
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== INSTRUCTOR ==================== -->
+    <section class="section instructor" id="instructor">
+        <div class="container">
+            <p class="section-label reveal">Кто ведёт</p>
+            <h2 class="section-title reveal">Твой наставник</h2>
+            <div class="instructor-card reveal">
+                <div class="instructor-photo">
+                    <!-- Замени на реальное фото -->
+                    Фото<br>появится<br>скоро
+                </div>
+                <div class="instructor-info">
+                    <h3>Основатель Whitecore</h3>
+                    <p>Построила эту платформу, систему оплаты, Telegram-бота и десятки проектов — всё с помощью AI, без единой строчки кода.</p>
+                    <p>Теперь учит других создавать так же.</p>
+                    <div class="instructor-stats">
+                        <div class="instructor-stat">
+                            <div class="num">50+</div>
+                            <div class="label">проектов</div>
+                        </div>
+                        <div class="instructor-stat">
+                            <div class="num">2</div>
+                            <div class="label">года с AI</div>
+                        </div>
+                        <div class="instructor-stat">
+                            <div class="num">0</div>
+                            <div class="label">строк кода</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PRICING ==================== -->
+    <section class="section pricing" id="pricing">
+        <div class="container">
+            <p class="section-label reveal">Стоимость</p>
+            <h2 class="section-title reveal">Полный курс — одна цена</h2>
+            <p class="section-subtitle reveal">11 модулей, 55+ уроков, все инструменты. Без скрытых платежей.</p>
+
+            <div class="seats-counter reveal">
+                <div class="counter-box">
+                    <span class="dot"></span>
+                    Осталось <strong id="seats-count">20</strong> мест по специальной цене
+                </div>
+            </div>
+
+            <div style="max-width:480px;margin:0 auto">
+                <div class="pricing-card popular reveal">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                        <div class="pricing-name" style="margin-bottom:0">AI-МАСТЕРСКАЯ</div>
+                        <span style="background:var(--success);color:#0D0B1A;font-size:12px;font-weight:700;padding:4px 12px;border-radius:100px">-87%</span>
+                    </div>
+                    <div class="pricing-desc">От идеи до рабочего продукта. Весь курс целиком.</div>
+                    <div style="margin:24px 0 8px">
+                        <div class="pricing-old-price" style="font-size:22px">150 000 ₸</div>
+                        <div class="pricing-price" style="font-size:52px">19 900 <span class="currency">₸</span></div>
+                    </div>
+                    <div class="pricing-installment">Для первых 20 студентов. Потом — 29 900 ₸</div>
+                    <ul class="pricing-features">
+                        <li><span class="check">✓</span> 11 модулей, 55+ уроков с видео</li>
+                        <li><span class="check">✓</span> Создание приложений, ботов, сайтов с AI</li>
+                        <li><span class="check">✓</span> База данных Supabase</li>
+                        <li><span class="check">✓</span> Приём платежей (Halyk Epay, карты)</li>
+                        <li><span class="check">✓</span> Автоматизация N8N</li>
+                        <li><span class="check">✓</span> Telegram Mini App</li>
+                        <li><span class="check">✓</span> Публикация в интернете</li>
+                        <li><span class="check">✓</span> Доступ навсегда (evergreen)</li>
+                        <li><span class="check">✓</span> Telegram-группа студентов</li>
+                        <li><span class="check">✓</span> Поддержка от автора курса</li>
+                    </ul>
+                    <a href="https://t.me/start_wckz_bot" class="pricing-btn accent" style="font-size:18px;padding:18px 32px">Получить доступ за 19 900 ₸ →</a>
+                    <p style="text-align:center;font-size:13px;color:var(--text-muted);margin-top:12px">Оплата через Kaspi перевод. Доступ — сразу после оплаты.</p>
+                </div>
+            </div>
+
+            <p class="pricing-guarantee reveal">
+                <svg style="display:inline-block;vertical-align:middle;width:20px;height:20px;margin-right:6px" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                Гарантия возврата 14 дней — не подойдёт, вернём деньги без вопросов
+            </p>
+
+            <p style="text-align:center;margin-top:12px;font-size:12px;color:var(--text-muted)">Цены указаны без НДС (ИП на упрощённом режиме налогообложения)</p>
+        </div>
+    </section>
+
+    <!-- ==================== FOR WHOM ==================== -->
+    <section class="section" id="for-whom">
+        <div class="container">
+            <p class="section-label reveal">Для кого</p>
+            <h2 class="section-title reveal">Этот курс для тебя, если…</h2>
+            <div class="personas-grid">
+                <div class="persona-card reveal">
+                    <div class="persona-header">
+                        <div class="persona-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="#9F67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+                        <div>
+                            <div class="persona-name">Предприниматель</div>
+                            <div class="persona-role">Есть идея, нет разработчика</div>
+                        </div>
+                    </div>
+                    <p class="persona-pain">«Хочу приложение для бизнеса, но разработчик просит 500K+ тенге»</p>
+                    <p class="persona-solution">→ Построишь MVP своей идеи за 2-7 дней сам</p>
+                </div>
+                <div class="persona-card reveal">
+                    <div class="persona-header">
+                        <div class="persona-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="#9F67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+                        <div>
+                            <div class="persona-name">Фрилансер</div>
+                            <div class="persona-role">Хочет новый навык и доход</div>
+                        </div>
+                    </div>
+                    <p class="persona-pain">«Клиенты просят ботов и сайты — приходится отказывать»</p>
+                    <p class="persona-solution">→ Добавь AI-разработку в услуги и зарабатывай +200K/мес</p>
+                </div>
+                <div class="persona-card reveal">
+                    <div class="persona-header">
+                        <div class="persona-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="#9F67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></div>
+                        <div>
+                            <div class="persona-name">Студент</div>
+                            <div class="persona-role">Хочет портфолио и карьеру</div>
+                        </div>
+                    </div>
+                    <p class="persona-pain">«Диплом ничего не даёт, а однокурсники-айтишники уже зарабатывают»</p>
+                    <p class="persona-solution">→ Выпусти с портфолио проектов, а не просто дипломом</p>
+                </div>
+                <div class="persona-card reveal">
+                    <div class="persona-header">
+                        <div class="persona-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="#9F67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 8h2m2 0h2m2 0h2"/><path d="M7 11h10"/></svg></div>
+                        <div>
+                            <div class="persona-name">Бизнес-владелец</div>
+                            <div class="persona-role">Хочет автоматизировать</div>
+                        </div>
+                    </div>
+                    <p class="persona-pain">«3-5 часов в день на одинаковые вопросы в DM, не масштабируюсь»</p>
+                    <p class="persona-solution">→ Бот для записи, каталог, FAQ — за 2 дня</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FAQ ==================== -->
+    <section class="section faq" id="faq">
+        <div class="container">
+            <p class="section-label reveal">Вопросы</p>
+            <h2 class="section-title reveal">Часто задаваемые вопросы</h2>
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        Нужно ли уметь программировать?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Нет. Курс создан для тех, кто никогда не писал код. Ты описываешь идею своими словами, а AI (Claude Code) пишет код за тебя. Claude понимает русский, казахский и другие языки. Всё что нужно — компьютер и желание.</div>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        Сколько времени нужно на прохождение?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Пакет START — 2-4 дня при занятиях 2-3 часа в день. Пакет MASTER — 1-2 недели. Доступ остаётся на 12 месяцев, так что можешь проходить в своём темпе.</div>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        На каком языке обучение?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Материалы курса на русском языке. Claude AI понимает русский, казахский и 100+ других языков — общайся с AI как удобно. Обучение проходит через Telegram Mini App.</div>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        Можно ли оплатить в рассрочку?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Да. Доступна рассрочка 0% через Halyk Bank. Пакет START — от 16 650 ₸/мес, MASTER — от 41 700 ₸/мес. Оплата банковской картой Visa/Mastercard.</div>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        Есть ли гарантия возврата?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Да. 14 дней гарантия — если курс не подойдёт, вернём полную стоимость. Мы лишь попросим поделиться, что можно улучшить — это поможет нам стать лучше для будущих студентов.</div>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        Что я смогу делать после курса?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Создавать веб-приложения, Telegram-ботов, лендинги, и мини-аппы с помощью AI. Пакет MASTER дополнительно — подключать базы данных, приём платежей и автоматизацию. Навык стоит до 5 млн ₸ за проект на фрилансе.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FINAL CTA ==================== -->
+    <section class="final-cta" id="cta">
+        <h2 class="reveal">Начни создавать с AI уже сегодня</h2>
+        <p class="reveal">Первый модуль — бесплатно. 5 уроков. Твой первый проект.</p>
+        <a href="https://t.me/start_wckz_bot" class="hero-cta reveal">Начать бесплатно →</a>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-links">
+                <a href="https://t.me/start_wckz_bot">Telegram-бот</a>
+                <a href="mailto:support@whitecore.kz">Поддержка</a>
+                <a href="https://wa.me/77066554905?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%BF%D0%B8%D1%88%D1%83%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20Whitecore%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D1%83." target="_blank">Заказать разработку (WhatsApp)</a>
+                <a href="/docs/offer.html">Оферта</a>
+                <a href="/docs/refund.html">Возврат</a>
+                <a href="/docs/privacy.html">Конфиденциальность</a>
+            </div>
+            <div class="footer-info">
+                ИП Мурашова О.С. · г. Актау, Казахстан<br>
+                © 2026 Whitecore. Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        // ===== STICKY HEADER =====
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // ===== SCROLL REVEAL =====
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        reveals.forEach(el => observer.observe(el));
+
+        // ===== FAQ ACCORDION =====
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const answer = item.querySelector('.faq-answer');
+                const isActive = item.classList.contains('active');
+
+                // Close all
+                document.querySelectorAll('.faq-item.active').forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.faq-answer').style.maxHeight = null;
+                });
+
+                // Open clicked (if wasn't already open)
+                if (!isActive) {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
+
+        // ===== SEATS COUNTER (Supabase + localStorage fallback) =====
+        (function() {
+            const SUPABASE_URL = 'https://huecuwrdckxaakwajdgm.supabase.co';
+            const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh1ZWN1d3JkY2t4YWFrd2FqZGdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3ODk3MzYsImV4cCI6MjA4NTM2NTczNn0._MArv1zePg0WLkiGSsF3GLhw5N1dLdfvd2mtcUNN3Kc';
+            const el = document.getElementById('seats-count');
+            const DEFAULT_SEATS = 8;
+
+            // Try Supabase first
+            fetch(SUPABASE_URL + '/rest/v1/site_settings?key=eq.seats_remaining&select=value', {
+                headers: {
+                    'apikey': SUPABASE_KEY,
+                    'Authorization': 'Bearer ' + SUPABASE_KEY
+                }
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data && data.length > 0 && data[0].value) {
+                    const count = parseInt(data[0].value);
+                    if (el && !isNaN(count)) el.textContent = count;
+                }
+            })
+            .catch(() => {
+                // Fallback to localStorage
+                const key = 'wc_seats';
+                const stored = localStorage.getItem(key);
+                if (!stored) {
+                    localStorage.setItem(key, JSON.stringify({ count: DEFAULT_SEATS, ts: Date.now() }));
+                }
+                const d = JSON.parse(localStorage.getItem(key));
+                if (el && d) el.textContent = d.count;
+            });
+        })();
+
+        // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
